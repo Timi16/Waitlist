@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-const cors = require('cors'); // Import CORS
+app.use(cors());
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
