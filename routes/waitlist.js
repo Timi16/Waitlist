@@ -5,10 +5,10 @@ const Waitlist = require('../models/Waitlist');
 // @route POST /api/waitlist
 // @desc Add a new entry to the waitlist
 router.post('/', async (req, res) => {
-  const { name, email, phoneNumber, brandName } = req.body;
+  const { email, phoneNumber, brandName } = req.body;
 
   // Basic validation
-  if (!name || !email || !phoneNumber || !brandName) {
+  if ( !email || !phoneNumber || !brandName) {
     return res.status(400).json({ msg: 'Please provide all required fields' });
   }
 
@@ -20,12 +20,11 @@ router.post('/', async (req, res) => {
     }
 
     // Create new waitlist entry
-    let entry = new Waitlist({ name, email, phoneNumber, brandName });
+    let entry = new Waitlist({ email, phoneNumber, brandName });
     await entry.save();
 
     // Log the details to the console
     console.log(`New Waitlist Entry Added:
-      Name: ${name},
       Email: ${email},
       Phone Number: ${phoneNumber},
       Brand Name: ${brandName}
